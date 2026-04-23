@@ -4,6 +4,8 @@ import com.practica.genericas.Coordenada;
 import com.practica.genericas.FechaHora;
 import com.practica.genericas.PosicionPersona;
 
+import java.util.ArrayList;
+
 public class ListaContactos {
 	private NodoTemporal lista;
 	private int size;
@@ -145,23 +147,11 @@ public class ListaContactos {
 	 * nuestra lista funciona de manera correcta.
 	 */
 	public int numPersonasEntreDosInstantes(FechaHora inicio, FechaHora fin) {
-		if(this.size==0)
-			return 0;
-		NodoTemporal aux = lista;
+		ArrayList<NodoPosicion> nodos = getNodosPosicionEntreDosInstantes(inicio, fin);
+		if(nodos == null) return 0;
 		int cont = 0;
-		int a;
-		cont = 0;
-		while(aux!=null) {
-			if(aux.getFecha().compareTo(inicio)>=0 && aux.getFecha().compareTo(fin)<=0) {
-				NodoPosicion nodo = aux.getListaCoordenadas();
-				while(nodo!=null) {
-					cont = cont + nodo.getNumPersonas();
-					nodo = nodo.getSiguiente();
-				}				
-				aux = aux.getSiguiente();
-			}else {
-				aux=aux.getSiguiente();
-			}
+		for(NodoPosicion nodo: nodos){
+			cont += nodo.getNumPersonas();
 		}
 		return cont;
 	}
@@ -169,28 +159,31 @@ public class ListaContactos {
 	
 	
 	public int numNodosCoordenadaEntreDosInstantes(FechaHora inicio, FechaHora fin) {
-		if(this.size==0)
-			return 0;
-		NodoTemporal aux = lista;
+		ArrayList<NodoPosicion> nodos = getNodosPosicionEntreDosInstantes(inicio, fin);
+		if(nodos == null) return 0;
 		int cont = 0;
-		int a;
-		cont = 0;
+		for(NodoPosicion nodo: nodos){
+			cont++;
+		}
+		return cont;
+	}
+
+	public ArrayList<NodoPosicion> getNodosPosicionEntreDosInstantes(FechaHora inicio, FechaHora fin) {
+		if(this.size==0) return null;
+		NodoTemporal aux = lista;
+		ArrayList<NodoPosicion> nodos = new ArrayList<>();
 		while(aux!=null) {
 			if(aux.getFecha().compareTo(inicio)>=0 && aux.getFecha().compareTo(fin)<=0) {
 				NodoPosicion nodo = aux.getListaCoordenadas();
 				while(nodo!=null) {
-					cont = cont + 1;
+					nodos.add(nodo);
 					nodo = nodo.getSiguiente();
-				}				
-				aux = aux.getSiguiente();
-			}else {
-				aux=aux.getSiguiente();
-			}
-		}
-		return cont;
+				}
+            }
+            aux = aux.getSiguiente();
+        }
+		return nodos;
 	}
-	
-	
 	
 	@Override
 	public String toString() {
