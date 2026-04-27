@@ -128,7 +128,7 @@ public class Test_1 {
 
 	@DisplayName("Busca una persona que no existe")
 	@Test
-	void test_1_10() throws EmsPersonNotFoundException {
+	void test_1_10() {
 		assertThrows(EmsPersonNotFoundException.class, () -> {
 			assertEquals(contactosCovid.findPersona("00000000A"), -1);
 		});
@@ -137,7 +137,7 @@ public class Test_1 {
 
 	@DisplayName("Obtiene localizaciones de una persona")
 	@Test
-	void test_1_11() throws EmsPersonNotFoundException {
+	void test_1_11() {
 		try {
 			assertEquals(contactosCovid.localizacionPersona("12121212R").size(), 3);
 		} catch (EmsPersonNotFoundException e) {
@@ -147,7 +147,7 @@ public class Test_1 {
 
 	@DisplayName("Obtiene localizaciones de una persona que no existe")
 	@Test
-	void test_1_12() throws EmsPersonNotFoundException {
+	void test_1_12() {
 		assertThrows(EmsPersonNotFoundException.class, () -> {
 			assertEquals(contactosCovid.localizacionPersona("00000000A").size(), 3);
 		});
@@ -155,7 +155,7 @@ public class Test_1 {
 
 	@DisplayName("Elimina una persona que no existe")
 	@Test
-	void test_1_13() throws EmsPersonNotFoundException {
+	void test_1_13() {
 		assertThrows(EmsPersonNotFoundException.class, () -> {
 			contactosCovid.delPersona("00000000A");
 		});
