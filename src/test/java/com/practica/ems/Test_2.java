@@ -21,7 +21,7 @@ public class Test_2 {
 	private static ContactosCovid contactosCovid;
 
 	@BeforeEach
-	void setUp() {		
+	void setUp() throws Exception {
 		contactosCovid = new ContactosCovid();
 		contactosCovid.loadDataFile("datos.txt", false);
 	}
