@@ -60,7 +60,9 @@ public class ContactosCovid {
 	public void loadData(String data, boolean reset) throws EmsInvalidTypeException, EmsInvalidNumberOfDataException,
 			EmsDuplicatePersonException, EmsDuplicateLocationException {
 		// borro información anterior
-		reiniciarContactos();
+		if (reset){
+			reiniciarContactos();
+		}
 		String datas[] = dividirEntrada(data);
 		for (String linea : datas) {
 			String datos[] = this.dividirLineaData(linea);
@@ -137,7 +139,7 @@ public class ContactosCovid {
 		}
 	}
 
-	private void leerDatosLocalizacion(String[] datos) throws EmsInvalidNumberOfDataException, EmsDuplicateLocationException {
+	private void leerDatosLocalizacion(String[] datos) throws EmsInvalidNumberOfDataException, EmsDuplicateLocationException{
 		if (datos.length != Constantes.MAX_DATOS_LOCALIZACION) {
 			throw new EmsInvalidNumberOfDataException(
 					"El número de datos para LOCALIZACION es menor de 6" );
