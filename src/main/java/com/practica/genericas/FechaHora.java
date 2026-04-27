@@ -1,12 +1,9 @@
 package com.practica.genericas;
 
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Locale;
 
 public class FechaHora implements Comparable<FechaHora>{
-	public class Fecha {
+	public static class Fecha {
 		private int dia, mes, anio;
 		 
 		public Fecha(int dia, int mes, int anio) {
@@ -42,15 +39,12 @@ public class FechaHora implements Comparable<FechaHora>{
 
 		@Override
 		public String toString() {
-			String cadena = String.format("%2d/%02d/%4d",dia,mes,anio);
-			return cadena;
+			return String.format("%2d/%02d/%4d",dia,mes,anio);
 		}
-		
-		
 
 	}
 
-	public class Hora {
+	public static class Hora {
 		private int hora, minuto;
 
 		public Hora(int hora, int minuto) {
@@ -113,6 +107,28 @@ public class FechaHora implements Comparable<FechaHora>{
 		this.hora = hora;
 	}
 
+	public static FechaHora parsearFecha(String fechaStr) {
+		String[] valores = fechaStr.split("\\/");
+		int dia = Integer.parseInt(valores[0]);
+		int mes = Integer.parseInt(valores[1]);
+		int anio = Integer.parseInt(valores[2]);
+		return new FechaHora(dia, mes, anio, 0, 0);
+	}
+
+	public static FechaHora parsearFecha(String fechaStr, String horaStr) {
+		// Parseamos la fecha
+		String[] valoresFecha = fechaStr.split("\\/");
+		int dia = Integer.parseInt(valoresFecha[0]);
+		int mes = Integer.parseInt(valoresFecha[1]);
+		int anio = Integer.parseInt(valoresFecha[2]);
+
+		String[] valoresHora = horaStr.split("\\:");
+		int hora = Integer.parseInt(valoresHora[0]);
+		int minuto = Integer.parseInt(valoresHora[1]);
+
+		return new FechaHora(dia, mes, anio, hora, minuto);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -146,6 +162,5 @@ public class FechaHora implements Comparable<FechaHora>{
 		
 		return dateTime1.compareTo(dateTime2);
 	}
-	
 	
 }
