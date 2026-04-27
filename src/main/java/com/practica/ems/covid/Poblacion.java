@@ -101,7 +101,5 @@ public class Poblacion {
 		}
 		return cadena;
 	}
-	
-	
-	
+
 }
