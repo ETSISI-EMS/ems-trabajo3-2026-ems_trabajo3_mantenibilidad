@@ -18,7 +18,7 @@ public class Test_3 {
 	private static ContactosCovid contactosCovid;
 
 	@BeforeEach
-	void setUp() {		
+	void setUp() throws Exception {
 		contactosCovid = new ContactosCovid();
 		contactosCovid.loadDataFile("datos2.txt", false);
 	}
@@ -71,7 +71,7 @@ public class Test_3 {
 	
 	@DisplayName("Comprobamos el numero de personas entre dos instantes temporales")
 	@Test
-	void test_8 () throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException {
+	void test_8 () {
 		FechaHora ini = new FechaHora(25,5,2021,16,30);
 		FechaHora fin = new FechaHora(25,5,2021,16,30);
 		assertEquals(contactosCovid.getListaContactos().numPersonasEntreDosInstantes(ini,fin), 4);		
@@ -79,7 +79,7 @@ public class Test_3 {
 	
 	@DisplayName("Comprobamos el numero de personas entre dos instantes temporales")
 	@Test
-	void test_9 () throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException {
+	void test_9 () {
 		FechaHora ini = new FechaHora(25,5,2021,16,36);
 		FechaHora fin = new FechaHora(25,5,2021,16,36);
 		assertEquals(contactosCovid.getListaContactos().numPersonasEntreDosInstantes(ini,fin), 4);		
@@ -87,7 +87,7 @@ public class Test_3 {
 	
 	@DisplayName("Comprobamos el numero de nodos coordenada entre dos instantes temporales")
 	@Test
-	void test_10 () throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException {
+	void test_10 () {
 		FechaHora ini = new FechaHora(25,5,2021,16,36);
 		FechaHora fin = new FechaHora(25,5,2021,16,36);
 		assertEquals(contactosCovid.getListaContactos().numNodosCoordenadaEntreDosInstantes(ini,fin), 3);		
@@ -95,7 +95,7 @@ public class Test_3 {
 	
 	@DisplayName("Comprobamos el numero de nodos coordenada y el número de personas entre dos instantes temporales")
 	@Test
-	void test_11 () throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException {
+	void test_11 () {
 		FechaHora ini = new FechaHora(25,5,2021,16,30);
 		FechaHora fin = new FechaHora(25,5,2021,18,01);
 		assertEquals(contactosCovid.getListaContactos().numNodosCoordenadaEntreDosInstantes(ini,fin), 10);	
